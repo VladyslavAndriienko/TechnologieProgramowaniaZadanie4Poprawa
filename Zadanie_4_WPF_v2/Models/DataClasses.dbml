@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdventureWorks2012_Data" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Vladyslav\source\repos\Zadanie_4_WPF_v2\Zadanie_4_WPF_v2\DataDirectory\AdventureWorks2014_Data.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="TP_Zadanie4_WPF.Properties.Settings" SettingsPropertyName="AdventureWorks2014_DataConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Purchasing.ShipMethod" Member="ShipMethods">
+    <Type Name="ShipMethod">
+      <Column Name="ShipMethodID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShipBase" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ShipRate" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="ShipMethod_PurchaseOrderHeader" Member="PurchaseOrderHeaders" ThisKey="ShipMethodID" OtherKey="ShipMethodID" Type="PurchaseOrderHeader" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.Vendor" Member="Vendors">
+    <Type Name="Vendor">
+      <Column Name="BusinessEntityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AccountNumber" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreditRating" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="PreferredVendorStatus" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ActiveFlag" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PurchasingWebServiceURL" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Vendor_ProductVendor" Member="ProductVendors" ThisKey="BusinessEntityID" OtherKey="BusinessEntityID" Type="ProductVendor" />
+      <Association Name="Vendor_PurchaseOrderHeader" Member="PurchaseOrderHeaders" ThisKey="BusinessEntityID" OtherKey="VendorID" Type="PurchaseOrderHeader" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.PurchaseOrderDetail" Member="PurchaseOrderDetails">
+    <Type Name="PurchaseOrderDetail">
+      <Column Name="PurchaseOrderID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PurchaseOrderDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DueDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OrderQty" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="LineTotal" Type="System.Decimal" DbType="Money NOT NULL" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ReceivedQty" Type="System.Decimal" DbType="Decimal(8,2) NOT NULL" CanBeNull="false" />
+      <Column Name="RejectedQty" Type="System.Decimal" DbType="Decimal(8,2) NOT NULL" CanBeNull="false" />
+      <Column Name="StockedQty" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="PurchaseOrderHeader_PurchaseOrderDetail" Member="PurchaseOrderHeader" ThisKey="PurchaseOrderID" OtherKey="PurchaseOrderID" Type="PurchaseOrderHeader" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.ProductVendor" Member="ProductVendors">
+    <Type Name="ProductVendor">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BusinessEntityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AverageLeadTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StandardPrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="LastReceiptCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="LastReceiptDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MinOrderQty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaxOrderQty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OnOrderQty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitMeasureCode" Type="System.String" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Vendor_ProductVendor" Member="Vendor" ThisKey="BusinessEntityID" OtherKey="BusinessEntityID" Type="Vendor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.PurchaseOrderHeader" Member="PurchaseOrderHeaders">
+    <Type Name="PurchaseOrderHeader">
+      <Column Name="PurchaseOrderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RevisionNumber" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ShipMethodID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ShipDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubTotal" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TaxAmt" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Freight" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TotalDue" Type="System.Decimal" DbType="Money NOT NULL" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="PurchaseOrderHeader_PurchaseOrderDetail" Member="PurchaseOrderDetails" ThisKey="PurchaseOrderID" OtherKey="PurchaseOrderID" Type="PurchaseOrderDetail" />
+      <Association Name="ShipMethod_PurchaseOrderHeader" Member="ShipMethod" ThisKey="ShipMethodID" OtherKey="ShipMethodID" Type="ShipMethod" IsForeignKey="true" />
+      <Association Name="Vendor_PurchaseOrderHeader" Member="Vendor" ThisKey="VendorID" OtherKey="BusinessEntityID" Type="Vendor" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
