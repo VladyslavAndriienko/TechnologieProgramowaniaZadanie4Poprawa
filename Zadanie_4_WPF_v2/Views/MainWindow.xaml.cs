@@ -23,6 +23,7 @@ namespace Zadanie_4_WPF_v2
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel();
         }
     }
 }
