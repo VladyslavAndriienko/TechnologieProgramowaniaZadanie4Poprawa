@@ -587,5 +587,286 @@ namespace Zadanie_4_WPF_v2.ViewModels
         }
 
         #endregion
+
+        #endregion
+
+        #region PurchaseOrderHeader
+
+        private int POH_PurchaseOrderID;
+        private byte POH_RevisionNumber;
+        private byte POH_Status;
+        private int POH_EmployeeID;
+        private int POH_VendorID;
+        private int POH_ShipMethodID;
+        private DateTime POH_OrderDate;
+        private DateTime? POH_ShipDate;
+        private decimal POH_SubTotal;
+        private decimal POH_TaxAmt;
+        private decimal POH_Freight;
+        private decimal POH_TotalDue;
+        private DateTime POH_ModifiedDate;
+        private int POH_selectedIndex = 0;
+
+        public int EditPOH_PurchaseOrderID
+        {
+            get
+            {
+                return this.POH_PurchaseOrderID;
+            }
+            set
+            {
+                this.POH_PurchaseOrderID = value;
+                OnPropertyChanged("EditPOH_PurchaseOrderID");
+            }
+        }
+        public byte EditPOH_RevisionNumber
+        {
+            get
+            {
+                return this.POH_RevisionNumber;
+            }
+            set
+            {
+                this.POH_RevisionNumber = value;
+                OnPropertyChanged("EditPOH_RevisionNumber");
+            }
+        }
+        public byte EditPOH_Status
+        {
+            get
+            {
+                return this.POH_Status;
+            }
+            set
+            {
+                this.POH_Status = value;
+                OnPropertyChanged("EditPOH_Status");
+            }
+        }
+        public int EditPOH_EmployeeID
+        {
+            get
+            {
+                return this.POH_EmployeeID;
+            }
+            set
+            {
+                this.POH_EmployeeID = value;
+                OnPropertyChanged("EditPOH_EmployeeID");
+            }
+        }
+        public int EditPOH_VendorID
+        {
+            get
+            {
+                return this.POH_VendorID;
+            }
+            set
+            {
+                this.POH_VendorID = value;
+                OnPropertyChanged("EditPOH_VendorID");
+            }
+        }
+        public int EditPOH_ShipMethodID
+        {
+            get
+            {
+                return this.POH_ShipMethodID;
+            }
+            set
+            {
+                this.POH_ShipMethodID = value;
+                OnPropertyChanged("EditPOH_ShipMethodID");
+            }
+        }
+        public DateTime EditPOH_OrderDate
+        {
+            get
+            {
+                return this.POH_OrderDate;
+            }
+            set
+            {
+                this.POH_OrderDate = value;
+                OnPropertyChanged("EditPOH_OrderDate");
+            }
+        }
+        public DateTime? EditPOH_ShipDate
+        {
+            get
+            {
+                return this.POH_ShipDate;
+            }
+            set
+            {
+                this.POH_ShipDate = value;
+                OnPropertyChanged("EditPOH_ShipDate");
+            }
+        }
+        public decimal EditPOH_SubTotal
+        {
+            get
+            {
+                return this.POH_SubTotal;
+            }
+            set
+            {
+                this.POH_SubTotal = value;
+                OnPropertyChanged("EditPOH_SubTotal");
+            }
+        }
+        public decimal EditPOH_TaxAmt
+        {
+            get
+            {
+                return this.POH_TaxAmt;
+            }
+            set
+            {
+                this.POH_TaxAmt = value;
+                OnPropertyChanged("EditPOH_TaxAmt");
+            }
+        }
+        public decimal EditPOH_Freight
+        {
+            get
+            {
+                return this.POH_Freight;
+            }
+            set
+            {
+                this.POH_Freight = value;
+                OnPropertyChanged("EditPOH_Freight");
+            }
+        }
+        public decimal EditPOH_TotalDue
+        {
+            get
+            {
+                return this.POH_TotalDue;
+            }
+            set
+            {
+                this.POH_TotalDue = value;
+                OnPropertyChanged("EditPOH_TotalDue");
+            }
+        }
+        public DateTime EditPOH_ModifiedDate
+        {
+            get
+            {
+                return this.POH_ModifiedDate;
+            }
+            set
+            {
+                this.POH_ModifiedDate = value;
+                OnPropertyChanged("EditPOH_ModifiedDate");
+            }
+        }
+        public int POH_SelectedIndex
+        {
+            get
+            {
+                return POH_selectedIndex;
+            }
+
+            set
+            {
+                if (POH_selectedIndex == value)
+                {
+                    return;
+                }
+                POH_selectedIndex = value;
+
+                OnPropertyChanged("POH_selectedIndex");
+
+                if (POH_selectedIndex >= 0)
+                {
+                    EditPOH_PurchaseOrderID = listPurchaseOrderHeader[POH_selectedIndex].PurchaseOrderID;
+                    EditPOH_RevisionNumber = listPurchaseOrderHeader[POH_selectedIndex].RevisionNumber;
+                    EditPOH_Status = listPurchaseOrderHeader[POH_selectedIndex].Status;
+                    EditPOH_EmployeeID = listPurchaseOrderHeader[POH_selectedIndex].EmployeeID;
+                    EditPOH_VendorID = listPurchaseOrderHeader[POH_selectedIndex].VendorID;
+                    EditPOH_ShipMethodID = listPurchaseOrderHeader[POH_selectedIndex].ShipMethodID;
+                    EditPOH_OrderDate = listPurchaseOrderHeader[POH_selectedIndex].OrderDate;
+                    EditPOH_ShipDate = listPurchaseOrderHeader[POH_selectedIndex].ShipDate;
+                    EditPOH_SubTotal = listPurchaseOrderHeader[POH_selectedIndex].SubTotal;
+                    EditPOH_TaxAmt = listPurchaseOrderHeader[POH_selectedIndex].TaxAmt;
+                    EditPOH_Freight = listPurchaseOrderHeader[POH_selectedIndex].Freight;
+                    EditPOH_TotalDue = listPurchaseOrderHeader[POH_selectedIndex].TotalDue;
+                    EditPOD_ModifiedDate = listPurchaseOrderHeader[POH_selectedIndex].ModifiedDate;
+                }
+                else
+                {
+                    EditPOH_PurchaseOrderID = 0;
+                    EditPOH_RevisionNumber = 0;
+                    EditPOH_Status = 0;
+                    EditPOH_EmployeeID = 0;
+                    EditPOH_VendorID = 0;
+                    EditPOH_ShipMethodID = 0;
+                    EditPOH_OrderDate = default(DateTime);
+                    EditPOH_ShipDate = default(DateTime);
+                    EditPOH_SubTotal = 0;
+                    EditPOH_TaxAmt = 0;
+                    EditPOH_Freight = 0;
+                    EditPOH_TotalDue = 0;
+                    EditPOD_ModifiedDate = default(DateTime);
+                }
+            }
+        }
+
+        public ICommand EditClick_POH
+        {
+            get
+            {
+                return new Command(EditAndSave_POH);
+            }
+        }
+        private void EditAndSave_POH()
+        {
+            if (POH_selectedIndex >= 0)
+            {
+                int numberOfChange = listPurchaseOrderHeader[POH_selectedIndex].PurchaseOrderID;
+                listPurchaseOrderHeader[POH_selectedIndex].PurchaseOrderID = EditPOH_PurchaseOrderID;
+                listPurchaseOrderHeader[POH_selectedIndex].RevisionNumber = EditPOH_RevisionNumber;
+                listPurchaseOrderHeader[POH_selectedIndex].Status = EditPOH_Status;
+                listPurchaseOrderHeader[POH_selectedIndex].EmployeeID = EditPOH_EmployeeID;
+                listPurchaseOrderHeader[POH_selectedIndex].VendorID = EditPOH_VendorID;
+                listPurchaseOrderHeader[POH_selectedIndex].ShipMethodID = EditPOH_ShipMethodID;
+                listPurchaseOrderHeader[POH_selectedIndex].OrderDate = EditPOH_OrderDate;
+                listPurchaseOrderHeader[POH_selectedIndex].ShipDate = EditPOH_ShipDate;
+                listPurchaseOrderHeader[POH_selectedIndex].SubTotal = EditPOH_SubTotal;
+                listPurchaseOrderHeader[POH_selectedIndex].TaxAmt = EditPOH_TaxAmt;
+                listPurchaseOrderHeader[POH_selectedIndex].Freight = EditPOH_Freight;
+                listPurchaseOrderHeader[POH_selectedIndex].TotalDue = EditPOH_TotalDue;
+                listPurchaseOrderHeader[POH_selectedIndex].ModifiedDate = EditPOH_ModifiedDate;
+
+                CollectionViewSource.GetDefaultView(listPurchaseOrderHeader).Refresh();
+
+                foreach (PurchaseOrderHeader poh in aw.PurchaseOrderHeaders)
+                {
+                    if (poh.PurchaseOrderID == numberOfChange)
+                    {
+                        poh.PurchaseOrderID = EditPOH_PurchaseOrderID;
+                        poh.RevisionNumber = EditPOH_RevisionNumber;
+                        poh.Status = EditPOH_Status;
+                        poh.EmployeeID = EditPOH_EmployeeID;
+                        poh.VendorID = EditPOH_VendorID;
+                        poh.ShipMethodID = EditPOH_ShipMethodID;
+                        poh.OrderDate = EditPOH_OrderDate;
+                        poh.ShipDate = EditPOH_ShipDate;
+                        poh.SubTotal = EditPOH_SubTotal;
+                        poh.TaxAmt = EditPOH_TaxAmt;
+                        poh.Freight = EditPOH_Freight;
+                        poh.TotalDue = EditPOH_TotalDue;
+                        poh.ModifiedDate = EditPOH_ModifiedDate;
+                    }
+                }
+                aw.SubmitChanges();
+            }
+        }
+
+        #endregion
     }
 }
+
