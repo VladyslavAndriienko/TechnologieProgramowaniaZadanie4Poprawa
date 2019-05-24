@@ -1,12 +1,281 @@
-﻿<Window x:Class="Zadanie_4_WPF_v2.MainWindow"
+﻿<Window x:Class="zad4.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Zadanie_4_WPF_v2"
+        xmlns:local="clr-namespace:zad4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Zadanie 4"
+        Height="450" Width="1000"
+		WindowState="Normal"
+		WindowStyle="ToolWindow">
+  <ScrollViewer Margin="0,0,0,0">
+    <Grid Height="2050" Width="1199">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="0*"/>
+      </Grid.RowDefinitions>
+
+      <Grid.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="Gray" Offset="0" />
+          <GradientStop Color="Aqua" Offset="1" />
+        </LinearGradientBrush>
+      </Grid.Background>
+      <ListBox x:Name="listBox1" HorizontalAlignment="Stretch" FontSize="13"  Height="96" Margin="87,50,401,0" VerticalAlignment="Top" ItemsSource="{Binding ListShipMethod}" SelectedIndex="{Binding ShipMethod_SelectedIndex}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="{Binding ShipMethodID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding Name}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ShipBase}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ShipRate}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding rowguid}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ModifiedDate}" />
+            </WrapPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <TextBox IsReadOnly="True" Text="{Binding EditShipMethod_ShipMethodID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="226,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" RenderTransformOrigin="0.502,-0.278"/>
+      <TextBox Text="{Binding EditShipMethod_Name}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="226,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+      <TextBox Text="{Binding EditShipMethod_ShipBase}" HorizontalAlignment="Left" Height="24" FontSize="13"  Margin="226,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" />
+      <TextBox Text="{Binding EditShipMethod_ShipRate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="226,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" />
+      <TextBox Text="{Binding EditShipMethod_rowguid}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="226,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" />
+      <TextBox Text="{Binding EditShipMethod_ModifiedDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="226,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" RenderTransformOrigin="-4.519,6.792" />
+      <Button Content="Save" Command="{Binding EditClick_ShipMethod}" HorizontalAlignment="Right" Margin="0,364,1023,0" VerticalAlignment="Top" Width="90" Height="24" FontSize="15" Background="DarkCyan" Foreground="White"/>
+      <Label x:Name="labelShipMethod_1" Foreground="White" FontSize="20" Content="List of ShipMethod"  HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="335,10,677,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="45" Width="188"/>
+      <Label x:Name="labelShipMethod_2" Foreground="White" FontSize="15" Content="ID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,153,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,-0" Height="30" Width="34"/>
+      <Label x:Name="labelShipMethod_3" Foreground="White" FontSize="15" Content="Name" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,188,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" Width="69"/>
+      <Label x:Name="labelShipMethod_4" Foreground="White" FontSize="15" Content="MoneyBase" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,218,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" Width="91"/>
+      <Label x:Name="labelShipMethod_5" Foreground="White" FontSize="15" Content="MoneyRate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" Width="91"/>
+      <Label x:Name="labelShipMethod_6" Foreground="White" FontSize="15" Content="ModifiedDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,318,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" Width="114"/>
+      <Label x:Name="labelShipMethod_7" Foreground="White" FontSize="15" Content="RowGuid" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" Width="92"/>
+
+      <ListBox x:Name="listBox1_Copy" HorizontalAlignment="Stretch" Height="96" FontSize="13" Margin="87,465,401,0" VerticalAlignment="Top"  ItemsSource="{Binding ListVendor}" SelectedIndex="{Binding Vendor_SelectedIndex}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="{Binding BusinessEntityID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding AccountNumber}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding Name}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding CreditRating}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding PreferredVendorStatus}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ActiveFlag}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding PurchasingWebServiceURL}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ModifiedDate}" />
+            </WrapPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <TextBox IsReadOnly="True" Text="{Binding EditVendor_BusinessEntityID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,566,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.502,-0.278"/>
+      <TextBox Text="{Binding EditVendor_AccountNumber}" HorizontalAlignment="Left" Height="24" Margin="228,597,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+      <TextBox Text="{Binding EditVendor_Name}" HorizontalAlignment="Left" Height="24" Margin="228,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" />
+      <TextBox Text="{Binding EditVendor_CreditRating}" HorizontalAlignment="Left" Height="24" Margin="228,665,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" />
+      <TextBox Text="{Binding EditVendor_PreferredVendorStatus}" HorizontalAlignment="Left" Height="24" Margin="624,566,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" />
+      <TextBox Text="{Binding EditVendor_ActiveFlag}" HorizontalAlignment="Left" Height="24" Margin="624,597,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" />
+      <TextBox Text="{Binding EditVendor_PurchasingWebServiceURL}" HorizontalAlignment="Left" Height="24" Margin="624,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" />
+      <TextBox Text="{Binding EditVendor_ModifiedDate}" HorizontalAlignment="Left" Height="24" Margin="624,665,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" />
+      <Button Content="Save" Command="{Binding EditClick_Vendor}" HorizontalAlignment="Right" Margin="0,718,1023,0" VerticalAlignment="Top" Width="90" Height="24" FontSize="15" Background="DarkCyan" Foreground="White" RenderTransformOrigin="0.4,0.591"/>
+      <Label x:Name="labelVendor_1" Foreground="White" Content="List of Vendor" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="369,424,677,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="36" FontSize="20" Width="154"/>
+      <Label x:Name="labelVendor_2" Foreground="White" Content="ID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,566,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,-0" Height="30" FontSize="15" Width="43"/>
+      <Label x:Name="labelVendor_3" Foreground="White" Content="Account Number" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,597,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="136"/>
+      <Label x:Name="labelVendor_4" Foreground="White" Content="Name" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,628,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="26" FontSize="15" Width="95"/>
+      <Label x:Name="labelVendor_5" Foreground="White" Content="CreditRating" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,659,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="130"/>
+      <Label x:Name="labelVendor_6" Foreground="White" Content="ActiveFlag" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,566,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="136"/>
+      <Label x:Name="labelVendor_7" Foreground="White" Content="PreferredVendorStatus" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,626,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="176"/>
+      <Label x:Name="labelVendor_8" Foreground="White" Content="PurchasingWebServiceURL" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,597,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="185"/>
+      <Label x:Name="labelVendor_9" Foreground="White" Content="ModifiedDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,659,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="155"/>
+
+
+      <ListBox x:Name="listBox3" HorizontalAlignment="Stretch" Height="96" FontSize="13" Margin="87,827,399,0" VerticalAlignment="Top" ItemsSource="{Binding ListProductVendor}" SelectedIndex="{Binding ProductVendor_SelectedIndex}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="{Binding ProductID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding BusinessEntityID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding AverageLeadTime}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding StandardPrice}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding LastReceiptCost}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding LastReceiptDate}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding MinOrderQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding MaxOrderQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding OnOrderQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding UnitMeasureCode}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ModifiedDate}" />
+            </WrapPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <TextBox IsReadOnly="True" Text="{Binding EditProductVendor_ProductID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,928,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.502,-0.278"/>
+      <TextBox Text="{Binding EditProductVendor_BusinessEntityID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,958,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
+      <TextBox Text="{Binding EditProductVendor_AverageLeadTime}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,988,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" />
+      <TextBox Text="{Binding EditProductVendor_StandardPrice}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1018,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" />
+      <TextBox Text="{Binding EditProductVendor_LastReceiptCost}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1078,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" />
+      <TextBox Text="{Binding EditProductVendor_LastReceiptDate}" HorizontalAlignment="Left" Height="24"  FontSize="13" Margin="228,1048,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"/>
+      <TextBox Text="{Binding EditProductVendor_MinOrderQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="624,928,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" RenderTransformOrigin="-0.071,0.167" />
+      <TextBox Text="{Binding EditProductVendor_MaxOrderQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="624,958,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" />
+      <TextBox Text="{Binding EditProductVendor_OnOrderQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="624,988,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" />
+      <TextBox Text="{Binding EditProductVendor_UnitMeasureCode}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="624,1018,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" />
+      <TextBox Text="{Binding EditProductVendor_ModifiedDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1048,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" />
+
+      <Button Content="Save" Command="{Binding EditClick_ProductVendor}" HorizontalAlignment="Right" Margin="0,1130,1023,0" VerticalAlignment="Top" Width="90" Height="24" FontSize="15" Background="DarkCyan" Foreground="White" />
+      <Label x:Name="labelProductVendor_1" Foreground="White" Content="List of ProductVendor" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="335,791,640,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="36" FontSize="20" Width="225"/>
+      <Label x:Name="labelProductVendor_2" Foreground="White" Content="ID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,928,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,-0" Height="30"  FontSize="15" Width="43"/>
+      <Label x:Name="labelProductVendor_3" Foreground="White" Content="BusinessEntityID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,958,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30"  FontSize="15" Width="124"/>
+      <Label x:Name="labelProductVendor_4" Foreground="White" Content="AverageLeadTime" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,988,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="136"/>
+      <Label x:Name="labelProductVendor_5" Foreground="White" Content="StandardPrice" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1018,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="101"/>
+      <Label x:Name="labelProductVendor_6" Foreground="White" Content="LastReceiptCost" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1078,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="130"/>
+      <Label x:Name="labelProductVendor_7" Foreground="White" Content="LastReceiptDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1048,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="130"/>
+      <Label x:Name="labelProductVendor_8" Foreground="White" Content="MinOrderQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,928,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30"  FontSize="15" Width="108"/>
+      <Label x:Name="labelProductVendor_9" Foreground="White" Content="MaxOrderQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,958,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="108"/>
+      <Label x:Name="labelProductVendor_10" Foreground="White" Content="OnOrderQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,988,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="99"/>
+      <Label x:Name="labelProductVendor_11" Foreground="White" Content="UnitMeasureCode" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1018,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="136"/>
+      <Label x:Name="labelProductVendor_12" Foreground="White" Content="ModifiedDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1048,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="126"/>
+
+      <ListBox x:Name="listBox4" HorizontalAlignment="Stretch" Height="90" Margin="87,1231,271,0" VerticalAlignment="Top" ItemsSource="{Binding ListPurchaseOrderHeader}" SelectedIndex="{Binding POH_SelectedIndex}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="{Binding PurchaseOrderID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding RevisionNumber}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding Status}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding EmployeeID}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding VendorID}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ShipMethodID}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding OrderDate}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ShipDate}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding SubTotal}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding TaxAmt}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding Freight}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding TotalDue}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ModifiedDate}" />
+            </WrapPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <TextBox IsReadOnly="True" Text="{Binding EditPOH_PurchaseOrderID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.502,-0.278"/>
+      <TextBox Text="{Binding EditPOH_RevisionNumber}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
+      <TextBox Text="{Binding EditPOH_Status}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1386,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" />
+      <TextBox Text="{Binding EditPOH_EmployeeID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1416,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" />
+      <TextBox Text="{Binding EditPOH_VendorID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1476,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" />
+      <TextBox Text="{Binding EditPOH_ShipMethodID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1446,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" />
+      <TextBox Text="{Binding EditPOH_OrderDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1506,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" />
+      <TextBox Text="{Binding EditPOH_ShipDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" />
+      <TextBox Text="{Binding EditPOH_SubTotal}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" />
+      <TextBox Text="{Binding EditPOH_TaxAmt}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1386,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" />
+      <TextBox Text="{Binding EditPOH_Freight}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1416,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" />
+      <TextBox Text="{Binding EditPOH_TotalDue}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="626,1446,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" />
+      <TextBox Text="{Binding EditPOH_ModifiedDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="626,1476,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" />
+
+      <Button Content="Save" Command="{Binding EditClick_POH}" HorizontalAlignment="Right" Margin="0,1554,1025,0" VerticalAlignment="Top" Width="90" Height="24" FontSize="15" Background="DarkCyan" Foreground="White" />
+      <Label x:Name="labelPOH_1" Foreground="White" Content="List of PurchaseOrderHeader" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="309,1188,621,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="36" FontSize="20" Width="270"/>
+      <Label x:Name="labelPOH_2" Foreground="White" Content="ID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1326,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,-0"  Height="30"  FontSize="15" Width="43"/>
+      <Label x:Name="labelPOH_3" Foreground="White" Content="Rev.NO." HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1356,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="74"/>
+      <Label x:Name="labelPOH_4" Foreground="White" Content="Status" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1386,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30"  FontSize="15" Width="67"/>
+      <Label x:Name="labelPOH_5" Foreground="White" Content="EmployeeID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1416,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="101"/>
+      <Label x:Name="labelPOH_6" Foreground="White" Content="VendorID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1476,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="101"/>
+      <Label x:Name="labelPOH_7" Foreground="White" Content="ShipMethodID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1446,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="114"/>
+      <Label x:Name="labelPOH_8" Foreground="White" Content="OrderDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1506,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="101"/>
+      <Label x:Name="labelPOH_9" Foreground="White" Content="ShipDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1326,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="87"/>
+      <Label x:Name="labelPOH_10" Foreground="White" Content="SubTotal" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1356,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="82"/>
+      <Label x:Name="labelPOH_11" Foreground="White" Content="TaxAmt" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1386,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="66"/>
+      <Label x:Name="labelPOH_12" Foreground="White" Content="Freight" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1416,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="66"/>
+      <Label x:Name="labelPOH_13" Foreground="White" Content="TotalDue" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1446,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="99"/>
+      <Label x:Name="labelPOH_14" Foreground="White" Content="ModifiedDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1476,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0"  Height="30"  FontSize="15" Width="108"/>
+
+      <ListBox x:Name="listBox5" HorizontalAlignment="Stretch" Height="90" Margin="87,1667,397,0" VerticalAlignment="Top" ItemsSource="{Binding ListPurchaseOrderDetail}" SelectedIndex="{Binding POD_SelectedIndex}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="{Binding PurchaseOrderID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding PurchaseOrderDetailID}"  />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding DueDate}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding OrderQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ProductID}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding UnitPrice}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding LineTotal}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ReceivedQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding SubTotal}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding RejectedQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding StockedQty}" />
+              <TextBlock Text=" | " />
+              <TextBlock Text="{Binding ModifiedDate}" />
+            </WrapPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <TextBox IsReadOnly="True" Text="{Binding EditPOD_PurchaseOrderID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1765,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.502,-0.278"/>
+      <TextBox Text="{Binding EditPOD_PurchaseOrderDetailID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1795,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
+      <TextBox Text="{Binding EditPOD_DueDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1825,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" />
+      <TextBox Text="{Binding EditPOD_OrderQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1860,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" />
+      <TextBox Text="{Binding EditPOD_ProductID}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1920,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" />
+      <TextBox Text="{Binding EditPOD_UnitPrice}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="228,1890,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" />
+      <TextBox Text="{Binding EditPOD_LineTotal}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="626,1765,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" />
+      <TextBox Text="{Binding EditPOD_ReceivedQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="626,1795,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" />
+      <TextBox Text="{Binding EditPOD_RejectedQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="626,1825,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" />
+      <TextBox Text="{Binding EditPOD_StockedQty}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1860,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" />
+      <TextBox Text="{Binding EditPOD_ModifiedDate}" HorizontalAlignment="Left" Height="24" FontSize="13" Margin="625,1890,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" />
+      <Button Content="Save" Command="{Binding EditClick_POD}" HorizontalAlignment="Right"  Margin="0,1967,1025,0" VerticalAlignment="Top" Width="90" Height="24" FontSize="15" Background="DarkCyan" Foreground="White" />
+      <Label x:Name="labelPOD_1" Foreground="White" Content="List of PurchaseOrderDetail" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="304,1626,619,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="36" FontSize="20" Width="276"/>
+      <Label x:Name="labelPOD_2" Foreground="White" Content="ID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1765,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,-0" Height="30" FontSize="15" Width="43"/>
+      <Label x:Name="labelPOD_3" Foreground="White" Content="POD ID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1795,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="69"/>
+      <Label x:Name="labelPOD_4" Foreground="White" Content="DueDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1825,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="74"/>
+      <Label x:Name="labelPOD_5" Foreground="White" Content="OrderQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1860,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="74"/>
+      <Label x:Name="labelPOD_6" Foreground="White" Content="ProductID" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1920,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="91"/>
+      <Label x:Name="labelPOD_7" Foreground="White" Content="UnitPrice" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="87,1890,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="87"/>
+      <Label x:Name="labelPOD_8" Foreground="White" Content="LineTotal" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1765,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="76"/>
+      <Label x:Name="labelPOD_9" Foreground="White" Content="ReceivedQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1795,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="102"/>
+      <Label x:Name="labelPOD_10" Foreground="White" Content="RejectedQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1830,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="99"/>
+      <Label x:Name="labelPOD_11" Foreground="White" Content="StockedQty" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1860,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="86"/>
+      <Label x:Name="labelPOD_12" Foreground="White" Content="ModifiedDate" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="434,1890,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.323,0" Height="30" FontSize="15" Width="108"/>
+
     </Grid>
+  </ScrollViewer>
+
 </Window>
