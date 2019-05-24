@@ -343,5 +343,249 @@ namespace Zadanie_4_WPF_v2.ViewModels
         }
 
         #endregion
+
+        #region PurchaseOrderDetail
+
+        private int POD_PurchaseOrderID;
+        private int POD_PurchaseOrderDetailID;
+        private DateTime POD_DueDate;
+        private short POD_OrderQty;
+        private int POD_ProductID;
+        private decimal POD_UnitPrice;
+        private decimal POD_LineTotal;
+        private decimal POD_ReceivedQty;
+        private decimal POD_RejectedQty;
+        private decimal POD_StockedQty;
+        private DateTime POD_ModifiedDate;
+        private int POD_selectedIndex = 0;
+
+        public int EditPOD_PurchaseOrderID
+        {
+            get
+            {
+                return this.POD_PurchaseOrderID;
+            }
+            set
+            {
+                this.POD_PurchaseOrderID = value;
+                OnPropertyChanged("EditPOD_PurchaseOrderID");
+            }
+        }
+        public int EditPOD_PurchaseOrderDetailID
+        {
+            get
+            {
+                return this.POD_PurchaseOrderDetailID;
+            }
+            set
+            {
+                this.POD_PurchaseOrderDetailID = value;
+                OnPropertyChanged("EditPOD_PurchaseOrderDetailID");
+            }
+        }
+        public DateTime EditPOD_DueDate
+        {
+            get
+            {
+                return this.POD_DueDate;
+            }
+            set
+            {
+                this.POD_DueDate = value;
+                OnPropertyChanged("EditPOD_DueDate");
+            }
+        }
+        public short EditPOD_OrderQty
+        {
+            get
+            {
+                return this.POD_OrderQty;
+            }
+            set
+            {
+                this.POD_OrderQty = value;
+                OnPropertyChanged("EditPOD_OrderQty");
+            }
+        }
+        public int EditPOD_ProductID
+        {
+            get
+            {
+                return this.POD_ProductID;
+            }
+            set
+            {
+                this.POD_ProductID = value;
+                OnPropertyChanged("EditPOD_ProductID");
+            }
+        }
+        public decimal EditPOD_UnitPrice
+        {
+            get
+            {
+                return this.POD_UnitPrice;
+            }
+            set
+            {
+                this.POD_UnitPrice = value;
+                OnPropertyChanged("EditPOD_UnitPrice");
+            }
+        }
+        public decimal EditPOD_LineTotal
+        {
+            get
+            {
+                return this.POD_LineTotal;
+            }
+            set
+            {
+                this.POD_LineTotal = value;
+                OnPropertyChanged("EditPOD_LineTotal");
+            }
+        }
+        public decimal EditPOD_ReceivedQty
+        {
+            get
+            {
+                return this.POD_ReceivedQty;
+            }
+            set
+            {
+                this.POD_ReceivedQty = value;
+                OnPropertyChanged("EditPOD_ReceivedQty");
+            }
+        }
+        public decimal EditPOD_RejectedQty
+        {
+            get
+            {
+                return this.POD_RejectedQty;
+            }
+            set
+            {
+                this.POD_RejectedQty = value;
+                OnPropertyChanged("EditPOD_RejectedQty");
+            }
+        }
+        public decimal EditPOD_StockedQty
+        {
+            get
+            {
+                return this.POD_StockedQty;
+            }
+            set
+            {
+                this.POD_StockedQty = value;
+                OnPropertyChanged("EditPOD_StockedQty");
+            }
+        }
+        public DateTime EditPOD_ModifiedDate
+        {
+            get
+            {
+                return this.POD_ModifiedDate;
+            }
+            set
+            {
+                this.POD_ModifiedDate = value;
+                OnPropertyChanged("EditPOD_ModifiedDate");
+            }
+        }
+        public int POD_SelectedIndex
+        {
+            get
+            {
+                return POD_selectedIndex;
+            }
+
+            set
+            {
+                if (POD_selectedIndex == value)
+                {
+                    return;
+                }
+                POD_selectedIndex = value;
+
+                OnPropertyChanged("POD_selectedIndex");
+
+                if (POD_selectedIndex >= 0)
+                {
+                    EditPOD_PurchaseOrderID = ListPurchaseOrderDetail[POD_selectedIndex].PurchaseOrderID;
+                    EditPOD_PurchaseOrderDetailID = ListPurchaseOrderDetail[POD_selectedIndex].PurchaseOrderDetailID;
+                    EditPOD_DueDate = ListPurchaseOrderDetail[POD_selectedIndex].DueDate;
+                    EditPOD_OrderQty = ListPurchaseOrderDetail[POD_selectedIndex].OrderQty;
+                    EditPOD_ProductID = ListPurchaseOrderDetail[POD_selectedIndex].ProductID;
+                    EditPOD_UnitPrice = ListPurchaseOrderDetail[POD_selectedIndex].UnitPrice;
+                    EditPOD_LineTotal = ListPurchaseOrderDetail[POD_selectedIndex].LineTotal;
+                    EditPOD_ReceivedQty = ListPurchaseOrderDetail[POD_selectedIndex].ReceivedQty;
+                    EditPOD_RejectedQty = ListPurchaseOrderDetail[POD_selectedIndex].RejectedQty;
+                    EditPOD_StockedQty = ListPurchaseOrderDetail[POD_selectedIndex].StockedQty;
+                    EditPOD_ModifiedDate = ListPurchaseOrderDetail[POD_selectedIndex].ModifiedDate;
+                }
+                else
+                {
+                    EditPOD_PurchaseOrderID = 0;
+                    EditPOD_PurchaseOrderDetailID = 0;
+                    EditPOD_DueDate = default(DateTime);
+                    EditPOD_OrderQty = 0;
+                    EditPOD_ProductID = 0;
+                    EditPOD_UnitPrice = 0;
+                    EditPOD_LineTotal = 0;
+                    EditPOD_ReceivedQty = 0;
+                    EditPOD_RejectedQty = 0;
+                    EditPOD_StockedQty = 0;
+                    EditPOD_ModifiedDate = default(DateTime);
+                }
+            }
+        }
+
+        public ICommand EditClick_POD
+        {
+            get
+            {
+                return new Command(EditAndSave_POD);
+            }
+        }
+        private void EditAndSave_POD()
+        {
+            if (POD_selectedIndex >= 0)
+            {
+                int numberOfChange = listPurchaseOrderDetail[POD_selectedIndex].PurchaseOrderID;
+                listPurchaseOrderDetail[POD_selectedIndex].PurchaseOrderID = EditPOD_PurchaseOrderID;
+                listPurchaseOrderDetail[POD_selectedIndex].PurchaseOrderDetailID = EditPOD_PurchaseOrderDetailID;
+                listPurchaseOrderDetail[POD_selectedIndex].DueDate = EditPOD_DueDate;
+                listPurchaseOrderDetail[POD_selectedIndex].OrderQty = EditPOD_OrderQty;
+                listPurchaseOrderDetail[POD_selectedIndex].ProductID = EditPOD_ProductID;
+                listPurchaseOrderDetail[POD_selectedIndex].UnitPrice = EditPOD_UnitPrice;
+                listPurchaseOrderDetail[POD_selectedIndex].LineTotal = EditPOD_LineTotal;
+                listPurchaseOrderDetail[POD_selectedIndex].ReceivedQty = EditPOD_ReceivedQty;
+                listPurchaseOrderDetail[POD_selectedIndex].RejectedQty = EditPOD_RejectedQty;
+                listPurchaseOrderDetail[POD_selectedIndex].StockedQty = EditPOD_StockedQty;
+                listPurchaseOrderDetail[POD_selectedIndex].ModifiedDate = EditPOD_ModifiedDate;
+
+                CollectionViewSource.GetDefaultView(listPurchaseOrderDetail).Refresh();
+
+                foreach (PurchaseOrderDetail pod in aw.PurchaseOrderDetails)
+                {
+                    if (pod.PurchaseOrderID == numberOfChange)
+                    {
+                        pod.PurchaseOrderID = EditPOD_PurchaseOrderID;
+                        pod.PurchaseOrderDetailID = EditPOD_PurchaseOrderDetailID;
+                        pod.DueDate = EditPOD_DueDate;
+                        pod.OrderQty = EditPOD_OrderQty;
+                        pod.ProductID = EditPOD_ProductID;
+                        pod.UnitPrice = EditPOD_UnitPrice;
+                        pod.LineTotal = EditPOD_LineTotal;
+                        pod.ReceivedQty = EditPOD_ReceivedQty;
+                        pod.RejectedQty = EditPOD_RejectedQty;
+                        pod.StockedQty = EditPOD_StockedQty;
+                        pod.ModifiedDate = EditPOD_ModifiedDate;
+                    }
+                }
+                aw.SubmitChanges();
+            }
+        }
+
+        #endregion
     }
 }
