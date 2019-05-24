@@ -867,6 +867,357 @@ namespace Zadanie_4_WPF_v2.ViewModels
         }
 
         #endregion
+
+        #region ShipMethod
+
+        private int ShipMethod_ShipMethodID;
+        private string ShipMethod_Name;
+        private decimal ShipMethod_ShipBase;
+        private decimal ShipMethod_ShipRate;
+        private Guid ShipMethod_rowguid;
+        private DateTime ShipMethod_ModifiedDate;
+        private int ShipMethod_selectedIndex = 0;
+
+        public int EditShipMethod_ShipMethodID
+        {
+            get
+            {
+                return this.ShipMethod_ShipMethodID;
+            }
+            set
+            {
+                this.ShipMethod_ShipMethodID = value;
+                OnPropertyChanged("EditShipMethod_ShipMethodID");
+            }
+        }
+        public string EditShipMethod_Name
+        {
+            get
+            {
+                return this.ShipMethod_Name;
+            }
+            set
+            {
+                this.ShipMethod_Name = value;
+                OnPropertyChanged("EditShipMethod_Name");
+            }
+        }
+        public decimal EditShipMethod_ShipBase
+        {
+            get
+            {
+                return this.ShipMethod_ShipBase;
+            }
+            set
+            {
+                this.ShipMethod_ShipBase = value;
+                OnPropertyChanged("EditShipMethod_ShipBase");
+            }
+        }
+        public decimal EditShipMethod_ShipRate
+        {
+            get
+            {
+                return this.ShipMethod_ShipRate;
+            }
+            set
+            {
+                this.ShipMethod_ShipRate = value;
+                OnPropertyChanged("EditShipMethod_ShipRate");
+            }
+        }
+        public Guid EditShipMethod_rowguid
+        {
+            get
+            {
+                return this.ShipMethod_rowguid;
+            }
+            set
+            {
+                this.ShipMethod_rowguid = value;
+                OnPropertyChanged("EditShipMethod_rowguid");
+            }
+        }
+        public DateTime EditShipMethod_ModifiedDate
+        {
+            get
+            {
+                return this.ShipMethod_ModifiedDate;
+            }
+            set
+            {
+                this.ShipMethod_ModifiedDate = value;
+                OnPropertyChanged("EditShipMethod_ModifiedDate");
+            }
+        }
+        public int ShipMethod_SelectedIndex
+        {
+            get
+            {
+                return ShipMethod_selectedIndex;
+            }
+
+            set
+            {
+                if (ShipMethod_selectedIndex == value)
+                {
+                    return;
+                }
+                ShipMethod_selectedIndex = value;
+
+                OnPropertyChanged("ShipMethod_selectedIndex");
+
+                if (ShipMethod_selectedIndex >= 0)
+                {
+                    EditShipMethod_ShipMethodID = listShipMethod[ShipMethod_selectedIndex].ShipMethodID;
+                    EditShipMethod_Name = listShipMethod[ShipMethod_selectedIndex].Name;
+                    EditShipMethod_ShipBase = listShipMethod[ShipMethod_selectedIndex].ShipBase;
+                    EditShipMethod_ShipRate = listShipMethod[ShipMethod_selectedIndex].ShipRate;
+                    EditShipMethod_rowguid = listShipMethod[ShipMethod_selectedIndex].rowguid;
+                    EditShipMethod_ModifiedDate = listShipMethod[ShipMethod_selectedIndex].ModifiedDate;
+                }
+                else
+                {
+                    EditShipMethod_ShipMethodID = 0;
+                    EditShipMethod_Name = "";
+                    EditShipMethod_ShipBase = 0;
+                    EditShipMethod_ShipRate = 0;
+                    EditShipMethod_rowguid = default(Guid);
+                    EditShipMethod_ModifiedDate = default(DateTime);
+                }
+
+            }
+        }
+
+        public ICommand EditClick_ShipMethod
+        {
+            get
+            {
+                return new Command(EditAndSave_ShipMethod);
+            }
+        }
+        private void EditAndSave_ShipMethod()
+        {
+            if (ShipMethod_selectedIndex >= 0)
+            {
+                int numberOfChange = listShipMethod[ShipMethod_selectedIndex].ShipMethodID;
+                listShipMethod[ShipMethod_selectedIndex].ShipMethodID = EditShipMethod_ShipMethodID;
+                listShipMethod[ShipMethod_selectedIndex].Name = EditShipMethod_Name;
+                listShipMethod[ShipMethod_selectedIndex].ShipBase = EditShipMethod_ShipBase;
+                listShipMethod[ShipMethod_selectedIndex].ShipRate = EditShipMethod_ShipRate;
+                listShipMethod[ShipMethod_selectedIndex].rowguid = EditShipMethod_rowguid;
+                listShipMethod[ShipMethod_selectedIndex].ModifiedDate = EditShipMethod_ModifiedDate;
+                CollectionViewSource.GetDefaultView(listShipMethod).Refresh();
+
+                foreach (ShipMethod smh in aw.ShipMethods)
+                {
+                    if (smh.ShipMethodID == numberOfChange)
+                    {
+                        smh.ShipMethodID = EditShipMethod_ShipMethodID;
+                        smh.Name = EditShipMethod_Name;
+                        smh.ShipBase = EditShipMethod_ShipBase;
+                        smh.ShipRate = EditShipMethod_ShipRate;
+                        smh.rowguid = EditShipMethod_rowguid;
+                        smh.ModifiedDate = EditShipMethod_ModifiedDate;
+                    }
+                }
+                aw.SubmitChanges();
+            }
+        }
+
+        #endregion
+
+        #region Vendor
+
+        private int Vendor_BusinessEntityID;
+        private string Vendor_AccountNumber;
+        private string Vendor_Name;
+        private byte Vendor_CreditRating;
+        private bool Vendor_PreferredVendorStatus;
+        private bool Vendor_ActiveFlag;
+        private string Vendor_PurchasingWebServiceURL;
+        private DateTime Vendor_ModifiedDate;
+        private int Vendor_selectedIndex = 0;
+
+        public int EditVendor_BusinessEntityID
+        {
+            get
+            {
+                return this.Vendor_BusinessEntityID;
+            }
+            set
+            {
+                this.Vendor_BusinessEntityID = value;
+                OnPropertyChanged("EditVendor_BusinessEntityID");
+            }
+        }
+        public string EditVendor_AccountNumber
+        {
+            get
+            {
+                return this.Vendor_AccountNumber;
+            }
+            set
+            {
+                this.Vendor_AccountNumber = value;
+                OnPropertyChanged("EditVendor_AccountNumber");
+            }
+        }
+        public string EditVendor_Name
+        {
+            get
+            {
+                return this.Vendor_Name;
+            }
+            set
+            {
+                this.Vendor_Name = value;
+                OnPropertyChanged("EditVendor_Name");
+            }
+        }
+        public byte EditVendor_CreditRating
+        {
+            get
+            {
+                return this.Vendor_CreditRating;
+            }
+            set
+            {
+                this.Vendor_CreditRating = value;
+                OnPropertyChanged("EditVendor_CreditRating");
+            }
+        }
+        public bool EditVendor_PreferredVendorStatus
+        {
+            get
+            {
+                return this.Vendor_PreferredVendorStatus;
+            }
+            set
+            {
+                this.Vendor_PreferredVendorStatus = value;
+                OnPropertyChanged("EditVendor_PreferredVendorStatus ");
+            }
+        }
+        public bool EditVendor_ActiveFlag
+        {
+            get
+            {
+                return this.Vendor_ActiveFlag;
+            }
+            set
+            {
+                this.Vendor_ActiveFlag = value;
+                OnPropertyChanged("EditVendor_ActiveFlag ");
+            }
+        }
+        public string EditVendor_PurchasingWebServiceURL
+        {
+            get
+            {
+                return this.Vendor_PurchasingWebServiceURL;
+            }
+            set
+            {
+                this.Vendor_PurchasingWebServiceURL = value;
+                OnPropertyChanged("EditVendor_PurchasingWebServiceURL ");
+            }
+        }
+        public DateTime EditVendor_ModifiedDate
+        {
+            get
+            {
+                return this.Vendor_ModifiedDate;
+            }
+            set
+            {
+                this.Vendor_ModifiedDate = value;
+                OnPropertyChanged("EditVendor_ModifiedDate");
+            }
+        }
+        public int Vendor_SelectedIndex
+        {
+            get
+            {
+                return Vendor_selectedIndex;
+            }
+
+            set
+            {
+                if (Vendor_selectedIndex == value)
+                {
+                    return;
+                }
+                Vendor_selectedIndex = value;
+
+                OnPropertyChanged("Vendor_selectedIndex");
+
+                if (Vendor_selectedIndex >= 0)
+                {
+                    EditVendor_BusinessEntityID = listVendor[Vendor_selectedIndex].BusinessEntityID;
+                    EditVendor_AccountNumber = listVendor[Vendor_selectedIndex].AccountNumber;
+                    EditVendor_Name = listVendor[Vendor_selectedIndex].Name;
+                    EditVendor_CreditRating = listVendor[Vendor_selectedIndex].CreditRating;
+                    EditVendor_PreferredVendorStatus = listVendor[Vendor_selectedIndex].PreferredVendorStatus;
+                    EditVendor_ActiveFlag = listVendor[Vendor_selectedIndex].ActiveFlag;
+                    EditVendor_PurchasingWebServiceURL = listVendor[Vendor_selectedIndex].PurchasingWebServiceURL;
+                    EditVendor_ModifiedDate = listVendor[Vendor_selectedIndex].ModifiedDate;
+                }
+                else
+                {
+                    EditVendor_BusinessEntityID = 0;
+                    EditVendor_AccountNumber = "";
+                    EditVendor_Name = "";
+                    EditVendor_CreditRating = 0;
+                    EditVendor_PreferredVendorStatus = true;
+                    EditVendor_ActiveFlag = true;
+                    EditVendor_PurchasingWebServiceURL = "";
+                    EditVendor_ModifiedDate = default(DateTime);
+                }
+            }
+        }
+
+        public ICommand EditClick_Vendor
+        {
+            get
+            {
+                return new Command(EditAndSave_Vendor);
+            }
+        }
+        private void EditAndSave_Vendor()
+        {
+            if (Vendor_selectedIndex >= 0)
+            {
+                int numberOfChange = listVendor[Vendor_selectedIndex].BusinessEntityID;
+                listVendor[Vendor_selectedIndex].BusinessEntityID = EditVendor_BusinessEntityID;
+                listVendor[Vendor_selectedIndex].AccountNumber = EditVendor_AccountNumber;
+                listVendor[Vendor_selectedIndex].Name = EditVendor_Name;
+                listVendor[Vendor_selectedIndex].CreditRating = EditVendor_CreditRating;
+                listVendor[Vendor_selectedIndex].PreferredVendorStatus = EditVendor_PreferredVendorStatus;
+                listVendor[Vendor_selectedIndex].ActiveFlag = EditVendor_ActiveFlag;
+                listVendor[Vendor_selectedIndex].PurchasingWebServiceURL = EditVendor_PurchasingWebServiceURL;
+                listVendor[Vendor_selectedIndex].ModifiedDate = EditVendor_ModifiedDate;
+
+                CollectionViewSource.GetDefaultView(listVendor).Refresh();
+
+                foreach (Vendor v in aw.Vendors)
+                {
+                    if (v.BusinessEntityID == numberOfChange)
+                    {
+                        v.BusinessEntityID = EditVendor_BusinessEntityID;
+                        v.AccountNumber = EditVendor_AccountNumber;
+                        v.Name = EditVendor_Name;
+                        v.CreditRating = EditVendor_CreditRating;
+                        v.PreferredVendorStatus = EditVendor_PreferredVendorStatus;
+                        v.ActiveFlag = EditVendor_ActiveFlag;
+                        v.PurchasingWebServiceURL = EditVendor_PurchasingWebServiceURL;
+                        v.ModifiedDate = EditVendor_ModifiedDate;
+                    }
+                }
+                aw.SubmitChanges();
+            }
+        }
+
+        #endregion
     }
 }
-
